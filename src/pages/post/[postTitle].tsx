@@ -264,7 +264,7 @@ export async function getServerSideProps(data: any) {
   let connected = false;
   try {
     await Connection.getInstance();
-    const title = data.query.postTitle.replace("_", " ");
+    const title = data.query.postTitle.replaceAll("_", " ");
     const topic: any = await TopicModel.findOne({ title });
     const post = await PostModel.findById(topic.postId);
     const replies = await ReplyModel.find({ topicId: topic._id });
