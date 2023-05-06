@@ -12,7 +12,7 @@
     font-weight: bold;
 }
 
-code {
+pre {
     background: #222222;
     color: whitesmoke;
     padding: 2px 6px;
@@ -22,6 +22,11 @@ code {
     color: tomato;
     font-weight: bolder;
 
+}
+
+.message li::before {
+    content: "-";
+    margin-left: 6px;
 }
 
 .message a:hover {
