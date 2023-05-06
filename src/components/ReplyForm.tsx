@@ -36,8 +36,8 @@ const ReplyForm = ({
     <form
       className={
         darkMode
-          ? "bg-slate-900 p-8 flex flex-col text-white"
-          : "bg-white p-8 flex flex-col border-2"
+          ? "bg-slate-900 md:p-8 p-2 flex flex-col text-white"
+          : "bg-white md:p-8 p-2 flex flex-col border-2"
       }
     >
       <h2 className="text-lg font-bold uppercase">Responder al post</h2>
@@ -54,7 +54,7 @@ const ReplyForm = ({
       ></textarea>
       <div className="self-end">
         <button
-          className="bg-rose-700 mt-2 p-2 text-white font-bold hover:bg-rose-600 mr-4"
+          className="bg-rose-700 mt-2 p-2 text-white font-bold hover:bg-rose-600 mr-4 text-sm md:text-md"
           onClick={(e) => {
             e.preventDefault();
             setShowReplyForm(false);
@@ -63,7 +63,7 @@ const ReplyForm = ({
           Cancelar
         </button>
         <button
-          className="bg-rose-500 mt-2 p-2 text-white font-bold hover:bg-rose-400"
+          className="bg-rose-500 mt-2 p-2 text-white font-bold hover:bg-rose-400 text-sm md:text-md"
           onClick={(e) => {
             e.preventDefault();
             handleConfirm();

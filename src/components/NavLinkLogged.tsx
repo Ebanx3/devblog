@@ -13,13 +13,13 @@ const NavLinks = ({ darkMode }: { darkMode: boolean }) => {
   };
 
   return (
-    <>
+    <div className="text-sm md:text-md flex flex-col items-end sm:flex-row">
       <Link
         href={"/favs"}
         className={
           darkMode
-            ? "mr-4 font-bold text-slate-100 hover:text-slate-300"
-            : "mr-4 font-bold text-stone-600 hover:text-stone-400"
+            ? "sm:mr-4 mr-8 mt-8 sm:mt-0 font-bold text-slate-100 hover:text-slate-300"
+            : "sm:mr-4 mr-8 mt-8 sm:mt-0 font-bold text-stone-600 hover:text-stone-400"
         }
       >
         <FontAwesomeIcon icon={faStar} className="mr-1" />
@@ -29,8 +29,8 @@ const NavLinks = ({ darkMode }: { darkMode: boolean }) => {
         href={"/myPosts"}
         className={
           darkMode
-            ? "mr-4 font-bold text-slate-100 hover:text-slate-300"
-            : "mr-4 font-bold text-stone-600 hover:text-stone-400"
+            ? "sm:mr-4 mr-8 mt-8 sm:mt-0 font-bold text-slate-100 hover:text-slate-300"
+            : "sm:mr-4 mr-8 mt-8 sm:mt-0 font-bold text-stone-600 hover:text-stone-400"
         }
       >
         MIS POSTS
@@ -39,14 +39,14 @@ const NavLinks = ({ darkMode }: { darkMode: boolean }) => {
         href={"/"}
         className={
           darkMode
-            ? "mr-4 font-bold text-slate-400 hover:text-slate-200"
-            : "mr-4 font-bold text-stone-400 hover:text-stone-300"
+            ? "sm:mr-4 mr-8 mt-8 sm:mt-0 font-bold text-slate-400 hover:text-slate-200"
+            : "sm:mr-4 mr-8 mt-8 sm:mt-0 font-bold text-stone-400 hover:text-stone-300"
         }
         onClick={handleLogout}
       >
         SALIR
       </Link>
-    </>
+    </div>
   );
 };
 

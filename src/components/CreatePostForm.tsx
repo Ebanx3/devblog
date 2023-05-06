@@ -41,8 +41,8 @@ const CreatePostForm = ({
     <form
       className={
         darkMode
-          ? "bg-slate-900 p-8 flex flex-col text-white"
-          : "bg-white p-8 flex flex-col border-2"
+          ? "bg-slate-900 p-2 md:p-8 flex flex-col text-white"
+          : "bg-white p-2 md:p-8 flex flex-col border-2"
       }
     >
       <h2 className="text-xl font-bold mb-8 uppercase">Crear un nuevo post</h2>

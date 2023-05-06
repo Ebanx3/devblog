@@ -1,3 +1,47 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.message h1 {
+    font-size: x-large;
+    font-weight: bold;
+}
+
+.message h2 {
+    font-size: larger;
+    font-weight: bold;
+}
+
+code {
+    background: #222222;
+    color: whitesmoke;
+    padding: 2px 6px;
+}
+
+.message a {
+    color: tomato;
+    font-weight: bolder;
+
+}
+
+.message a:hover {
+    color: rgb(255, 157, 140);
+}
+
+@media screen and (max-width: 640px) {
+
+    .message a,
+    p,
+    li,
+    code {
+        font-size: small;
+    }
+
+    .message h1 {
+        font-size: large;
+    }
+
+    .message h2 {
+        font-size: medium;
+    }
+}

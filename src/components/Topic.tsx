@@ -32,13 +32,13 @@ const Topic = ({ topic, darkMode }: { topic: Topic; darkMode: boolean }) => {
       <p
         className={
           darkMode
-            ? "text-lg text-slate-400 font-bold my-2"
-            : "text-lg text-stone-500 font-bold my-2"
+            ? "md:text-lg text-slate-400 font-bold my-2"
+            : "md:text-lg text-stone-500 font-bold my-2"
         }
       >
         {topic.user}
       </p>
-      <div className="flex justify-between mt-6">
+      <div className="flex justify-between mt-6 md:text-lg text-sm">
         <span className={darkMode ? "text-slate-500" : "text-stone-500"}>
           {topic.createdAt}
         </span>

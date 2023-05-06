@@ -1,4 +1,5 @@
 import Connection from "@/db/connection";
+import Head from "next/head";
 import TopicModel from "@/db/models/topic";
 import PostModel from "@/db/models/posts";
 import Nav from "@/components/Nav";
@@ -120,6 +121,14 @@ const Topic = ({
 
   return contentToShow !== "" ? (
     <>
+      <Head>
+        <title>nosApuntes</title>
+        <meta
+          name="description"
+          content="Un espacio donde encontrar y compartir tutoriales sobre desarrollo"
+        />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </Head>
       <div
         className={
           darkMode ? "min-h-screen bg-slate-800" : "min-h-screen bg-stone-100"
@@ -130,12 +139,12 @@ const Topic = ({
           <div
             className={
               darkMode
-                ? "bg-slate-900 text-slate-100 mt-4 p-6"
-                : "bg-white mt-4 p-6 text-stone-800"
+                ? "bg-slate-900 text-slate-100 mt-4 sm:p-6 p-1"
+                : "bg-white mt-4 sm:p-6 text-stone-800 p-1"
             }
           >
             <div className="flex items-center justify-between">
-              <span className="uppercase font-bold text-xl ">
+              <span className="uppercase font-bold md:text-xl ">
                 {topic.title}
                 <button
                   className="ml-4"
@@ -149,23 +158,29 @@ const Topic = ({
                 </button>
               </span>
 
-              <span className={darkMode ? "text-slate-400" : "text-stone-400"}>
+              <span
+                className={
+                  darkMode
+                    ? "text-slate-400 text-sm md:text-md"
+                    : "text-stone-400 text-sm md:text-md"
+                }
+              >
                 {topic.createdAt}
               </span>
             </div>
             <span
               className={
                 darkMode
-                  ? " text-slate-400 font-bold text-lg"
-                  : "text-stone-500 font-bold text-lg"
+                  ? " text-slate-400 font-bold md:text-lg"
+                  : "text-stone-500 font-bold md:text-lg"
               }
             >
               {topic.username}
             </span>
-            <p
-              className={darkMode ? "mt-8" : "mt-8"}
+            <div
+              className={darkMode ? "mt-8 message" : "mt-8 message"}
               dangerouslySetInnerHTML={{ __html: contentToShow }}
-            ></p>
+            ></div>
             <div
               className={
                 darkMode

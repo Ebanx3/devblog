@@ -29,8 +29,8 @@ const EditPostForm = ({
     <form
       className={
         darkMode
-          ? "bg-slate-900 p-8 flex flex-col text-white mb-4"
-          : "bg-white p-8 flex flex-col border-2 mb-4"
+          ? "bg-slate-900 md:p-8 p-2 flex flex-col text-white mb-4"
+          : "bg-white md:p-8 p-2 flex flex-col border-2 mb-4"
       }
     >
       <textarea
@@ -46,7 +46,7 @@ const EditPostForm = ({
       ></textarea>
       <div className="self-end">
         <button
-          className="bg-rose-700 mt-2 p-2 text-white font-bold hover:bg-rose-600 mr-4"
+          className="bg-rose-700 mt-2 p-2 text-white font-bold hover:bg-rose-600 mr-4 md:text-md text-sm"
           onClick={(e) => {
             e.preventDefault();
             setShowEditForm(false);
@@ -55,7 +55,7 @@ const EditPostForm = ({
           Cancelar
         </button>
         <button
-          className="bg-rose-500 mt-2 p-2 text-white font-bold hover:bg-rose-400"
+          className="bg-rose-500 mt-2 p-2 text-white font-bold hover:bg-rose-400  md:text-md text-sm"
           onClick={(e) => {
             e.preventDefault();
             handleConfirm();

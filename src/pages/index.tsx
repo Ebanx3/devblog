@@ -23,7 +23,7 @@ export default function Home({
   infoBox: string;
   data: any[];
 }) {
-  const [showInfo, setShowInfo] = useState(infoBox !== "");
+  // const [showInfo, setShowInfo] = useState(infoBox !== "");
   const { user } = useContext(context);
 
   return (
@@ -42,7 +42,7 @@ export default function Home({
         }
       >
         <Nav darkMode={darkMode} handleDarkLight={handleDarkLight} />
-        {showInfo && <InfoBox info={infoBox} setShowInfo={setShowInfo} />}
+        {/* {showInfo && <InfoBox info={infoBox} setShowInfo={setShowInfo} />} */}
 
         <main className="flex flex-col items-center mt-8 max-w-6xl m-auto">
           {user.username ? (
