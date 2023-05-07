@@ -221,29 +221,33 @@ const addOrRemoveDislike = async (req: NextApiRequest, res: NextApiResponse<resp
     }
 }
 
+const createR = async (res: any[]) => {
+    const r: any = [];
+    // await Promise.all(res.forEach(async (res: any) => {
+    //     const rr = await TopicModel.find({ postId: res._id })
+    //     r.concat(rr)
+    // }))
+    return r;
+}
+
 const searchInTopics = async (req: NextApiRequest, res: NextApiResponse<response>) => {
     try {
         const { query } = req.query;
-        console.log(query)
-        const s: String = query?.toString() || "";
-        const wordsInQuery = s.split("&");
-        // const q = "/" + wordsInQuery.join("/i,/") + "/i";
-        let b: any;
-        const a = wordsInQuery.map((elem: String) => {
-            b += /elem/i
-        })
+        const queryToLook: string = query!.toString()
 
-        // const response = await TopicModel.find({ title: { $regex: wordsInQuery[0] } })
-        const response = await TopicModel.find({ title: { $in: [/probando/i] } })
-        // const arr: any[] = [...response];
-        // arr.filter((elem: any) => {
 
-        // })
+        const res2 = await PostModel.find({ $text: { $search: queryToLook } });
+
+
+        const result = await Promise.all(res2.map(async (res: any) => { return await TopicModel.findOne({ postId: res._id }) }));
+
+        // const r = await createR(res2)
+        // // console.log(r);
 
         return res.status(200).json({
             success: true,
             message: "ok",
-            data: response
+            data: result
         })
     }
     catch (error) {

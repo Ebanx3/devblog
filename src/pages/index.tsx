@@ -10,6 +10,7 @@ import formatDate from "@/formatDate";
 import { context } from "@/UserContext";
 import CreateTopicBtn from "@/components/CreateTopicBtn";
 import { searchInTopics } from "./api/fetchs";
+import topic from "@/db/models/topic";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -89,6 +90,9 @@ export default function Home({
                 </span>
               </span>
             )}
+            {searchResultTopics.map((topic: any) => (
+              <Topic topic={topic} key={topic._id} darkMode={darkMode} />
+            ))}
           </main>
         )}
       </div>

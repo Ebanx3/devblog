@@ -13,4 +13,6 @@ const TopicSchema = new Schema({
     timestamps: true
 })
 
+TopicSchema.index({ title: "text" });
+
 export default models.Topic || model('Topic', TopicSchema);

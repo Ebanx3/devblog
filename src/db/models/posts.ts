@@ -10,5 +10,6 @@ const PostSchema = new Schema({
     versionKey: false
 });
 
+PostSchema.index({ content: "text" })
 
 export default models.Post || model('Post', PostSchema);
