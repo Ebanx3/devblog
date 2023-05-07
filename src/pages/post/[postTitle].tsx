@@ -131,10 +131,14 @@ const Topic = ({
       </Head>
       <div
         className={
-          darkMode ? "min-h-screen bg-slate-800" : "min-h-screen bg-stone-100"
+          darkMode ? "min-h-screen bg-slate-800" : "min-h-screen bg-sky-100"
         }
       >
-        <Nav darkMode={darkMode} handleDarkLight={handleDarkLight} />
+        <Nav
+          darkMode={darkMode}
+          handleDarkLight={handleDarkLight}
+          setWordsToSearch={() => {}}
+        />
         <div className="max-w-6xl m-auto flex flex-col">
           <div
             className={

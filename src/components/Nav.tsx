@@ -50,7 +50,7 @@ const Nav = ({
               className={
                 darkMode
                   ? "text-lg mr-4 text-stone-50 hover:text-stone-300"
-                  : "text-lg mr-4 text-stone-600 hover:text-stone-400"
+                  : "text-lg mr-4 text-orange-600 hover:text-orange-400"
               }
             />
           </button>

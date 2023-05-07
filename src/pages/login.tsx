@@ -37,7 +37,7 @@ const Login = ({ darkMode }: { darkMode: boolean }) => {
         className={
           darkMode
             ? "flex justify-center items-center bg-slate-800 h-screen"
-            : "flex justify-center items-center bg-stone-100 h-screen"
+            : "flex justify-center items-center bg-sky-100 h-screen"
         }
       >
         <Link href="/" className="absolute top-4 left-4">

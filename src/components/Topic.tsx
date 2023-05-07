@@ -1,6 +1,4 @@
 import Link from "next/link";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheck } from "@fortawesome/free-solid-svg-icons";
 
 type Topic = {
   id: string;
@@ -17,14 +15,14 @@ const Topic = ({ topic, darkMode }: { topic: Topic; darkMode: boolean }) => {
       className={
         darkMode
           ? "bg-slate-900 w-full p-4 inline-block hover:bg-black my-1"
-          : "border-2 bg-white w-full p-4 inline-block hover:bg-stone-100 my-1"
+          : " bg-white w-full p-4 inline-block hover:bg-stone-100 my-1"
       }
     >
       <p
         className={
           darkMode
             ? "text-xl font-bold text-slate-100 uppercase"
-            : "text-xl font-bold uppercase text-stone-800"
+            : "text-xl font-bold uppercase text-sky-700"
         }
       >
         {topic.title}
@@ -42,7 +40,7 @@ const Topic = ({ topic, darkMode }: { topic: Topic; darkMode: boolean }) => {
         <span className={darkMode ? "text-slate-500" : "text-stone-500"}>
           {topic.createdAt}
         </span>
-      </div>
+      </div>{" "}
     </Link>
   );
 };

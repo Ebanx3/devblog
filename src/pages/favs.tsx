@@ -25,10 +25,14 @@ const Favs = ({
       </Head>
       <div
         className={
-          darkMode ? "min-h-screen bg-slate-800" : "min-h-screen bg-stone-100"
+          darkMode ? "min-h-screen bg-slate-800" : "min-h-screen bg-sky-100"
         }
       >
-        <Nav darkMode={darkMode} handleDarkLight={handleDarkLight} />
+        <Nav
+          darkMode={darkMode}
+          handleDarkLight={handleDarkLight}
+          setWordsToSearch={() => {}}
+        />
         <main className="flex flex-col items-center mt-8 max-w-6xl m-auto">
           {user.favs.map((fav) => (
             <Topic

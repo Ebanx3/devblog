@@ -7,6 +7,13 @@
     font-weight: bold;
 }
 
+.message a,
+span,
+p,
+li {
+    line-height: 1.5em;
+}
+
 .message h2 {
     font-size: larger;
     font-weight: bold;
