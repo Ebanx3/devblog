@@ -23,7 +23,7 @@ export default function Home({
   infoBox: string;
   data: any[];
 }) {
-  // const [showInfo, setShowInfo] = useState(infoBox !== "");
+  const [showInfo, setShowInfo] = useState(infoBox !== "");
   const { user } = useContext(context);
 
   return (
