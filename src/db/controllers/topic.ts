@@ -37,10 +37,16 @@ const getMyTopics = async (req: NextApiRequest, res: NextApiResponse<response>) 
             return res.status(401).json({ success: false, message: "Unauthorized", data: null })
         }
         const response = await TopicModel.find({ username });
+        const formatedResponses = response.map((topic: any) => ({
+            _id: topic._id.toString(),
+            username: topic.username,
+            title: topic.title,
+            createdAt: topic.createdAt.toString()
+        }))
         return res.status(200).json({
             success: true,
             message: "ok",
-            data: response
+            data: formatedResponses
         })
     }
     catch (error) {
@@ -218,6 +224,7 @@ const addOrRemoveDislike = async (req: NextApiRequest, res: NextApiResponse<resp
 const searchInTopics = async (req: NextApiRequest, res: NextApiResponse<response>) => {
     try {
         const { query } = req.query;
+        console.log(query)
         const s: String = query?.toString() || "";
         const wordsInQuery = s.split("&");
         // const q = "/" + wordsInQuery.join("/i,/") + "/i";
@@ -225,7 +232,7 @@ const searchInTopics = async (req: NextApiRequest, res: NextApiResponse<response
         const a = wordsInQuery.map((elem: String) => {
             b += /elem/i
         })
-        console.log(b)
+
         // const response = await TopicModel.find({ title: { $regex: wordsInQuery[0] } })
         const response = await TopicModel.find({ title: { $in: [/probando/i] } })
         // const arr: any[] = [...response];

@@ -15,9 +15,11 @@ import { context } from "@/UserContext";
 const Nav = ({
   darkMode,
   handleDarkLight,
+  setWordsToSearch,
 }: {
   darkMode: boolean;
   handleDarkLight: Function;
+  setWordsToSearch: Function;
 }) => {
   const [showResponsiveMenu, setShowResponsiveMenu] = useState(false);
   const { user } = useContext(context);
@@ -53,7 +55,15 @@ const Nav = ({
             />
           </button>
 
-          <div className="mr-4 flex items-stretch">
+          <form
+            className="mr-4 flex items-stretch"
+            onSubmit={(e: any) => {
+              e.preventDefault();
+              try {
+                setWordsToSearch(e.currentTarget.elements.search.value);
+              } catch (e) {}
+            }}
+          >
             <input
               type="text"
               id="search"
@@ -73,7 +83,7 @@ const Nav = ({
             >
               <FontAwesomeIcon icon={faMagnifyingGlass} />
             </button>
-          </div>
+          </form>
 
           {!user.username ? (
             <NavLinks darkMode={darkMode} />
@@ -120,10 +130,19 @@ const Nav = ({
             />
           </button>
 
-          <div className="mr-8 mt-8 flex items-stretch">
+          <form
+            className="mr-8 mt-8 flex items-stretch"
+            onSubmit={(e: any) => {
+              e.preventDefault();
+              try {
+                setWordsToSearch(e.currentTarget.elements.search.value);
+              } catch (e) {}
+            }}
+          >
             <input
               type="text"
               id="search"
+              name="wordsToSearch"
               autoComplete="off"
               className={
                 darkMode
@@ -132,6 +151,7 @@ const Nav = ({
               }
             />
             <button
+              type="submit"
               className={
                 darkMode
                   ? "bg-slate-800  border-r-2 border-b-2 border-t-2 border-slate-600 text-slate-50 px-1 hover:text-slate-400"
@@ -140,7 +160,7 @@ const Nav = ({
             >
               <FontAwesomeIcon icon={faMagnifyingGlass} />
             </button>
-          </div>
+          </form>
 
           {!user.username ? (
             <NavLinks darkMode={darkMode} />

@@ -1,9 +1,11 @@
 import Head from "next/head";
 import { context } from "@/UserContext";
 import Topic from "@/components/Topic";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import Nav from "@/components/Nav";
 import Connection from "@/db/connection";
+import { getMyPosts } from "./api/fetchs";
+import formatDate from "@/formatDate";
 
 const MyPosts = ({
   darkMode,
@@ -12,7 +14,13 @@ const MyPosts = ({
   darkMode: boolean;
   handleDarkLight: Function;
 }) => {
-  const { user } = useContext(context);
+  const [myPosts, setMyPosts] = useState([]);
+
+  useEffect(() => {
+    getMyPosts().then((res) => {
+      if (res.success) setMyPosts(res.data);
+    });
+  }, []);
 
   return (
     <>
@@ -31,14 +39,14 @@ const MyPosts = ({
       >
         <Nav darkMode={darkMode} handleDarkLight={handleDarkLight} />
         <main className="flex flex-col items-center mt-8 max-w-6xl m-auto">
-          {user.favs.map((fav) => (
+          {myPosts.map((post: any) => (
             <Topic
-              key={fav.title}
+              key={post.title}
               topic={{
-                id: fav.topicId,
-                title: fav.title,
-                createdAt: fav.date,
-                user: fav.author,
+                id: post._id,
+                title: post.title,
+                createdAt: formatDate(post.createdAt),
+                user: post.username,
               }}
               darkMode={darkMode}
             />
@@ -50,39 +58,3 @@ const MyPosts = ({
 };
 
 export default MyPosts;
-
-export async function getServerSideProps() {
-  let connected = false;
-  try {
-    await Connection.getInstance();
-
-    //   const response = await TopicModel.find({ status: "public" });
-    //   const data = response.map((elem) => {
-    //     return {
-    //       id: elem._id.toString(),
-    //       title: elem.title,
-    //       user: elem.username,
-    //       likes: elem.likes.length,
-    //       createdAt: formatDate(elem.createdAt.toString()),
-    //     };
-    //   });
-    const response = await fetch("/api/topic/myTopics");
-    const data = await response.json();
-
-    connected = true;
-    return {
-      props: {
-        connected,
-        data: data.json(),
-      },
-    };
-  } catch (err) {
-    console.log(err);
-    return {
-      props: {
-        connected,
-        data: [],
-      },
-    };
-  }
-}

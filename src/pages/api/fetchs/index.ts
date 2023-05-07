@@ -87,4 +87,16 @@ const addOrRemoveFromFavs = async (author: string, title: string, date: string, 
     return response
 }
 
-export { login, logout, signup, createPost, addReplyToTopic, updateTopic, addOrRemoveLike, addOrRemoveDislike, addOrRemoveFromFavs }
+const getMyPosts = async () => {
+    const res = await fetch(`/api/topic/myTopics`);
+    const response = await res.json();
+    return response;
+}
+
+const searchInTopics = async (query: string) => {
+    const res = await fetch(`/api/topic/${query}`);
+    const response = await res.json();
+    return response;
+}
+
+export { login, logout, signup, createPost, addReplyToTopic, updateTopic, addOrRemoveLike, addOrRemoveDislike, addOrRemoveFromFavs, getMyPosts, searchInTopics }

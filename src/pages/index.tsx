@@ -2,13 +2,14 @@ import Head from "next/head";
 import { Inter } from "next/font/google";
 import Nav from "@/components/Nav";
 import Connection from "@/db/connection";
-import InfoBox from "@/components/InfoBox";
-import { useContext, useState } from "react";
+// import InfoBox from "@/components/InfoBox";
+import { useContext, useEffect, useState } from "react";
 import TopicModel from "@/db/models/topic";
 import Topic from "@/components/Topic";
 import formatDate from "@/formatDate";
 import { context } from "@/UserContext";
 import CreateTopicBtn from "@/components/CreateTopicBtn";
+import { searchInTopics } from "./api/fetchs";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,8 +24,21 @@ export default function Home({
   infoBox: string;
   data: any[];
 }) {
-  const [showInfo, setShowInfo] = useState(infoBox !== "");
+  // const [showInfo, setShowInfo] = useState(infoBox !== "");
+  const [wordsToSearch, setWordsToSearch] = useState("");
+  const [searchResultTopics, setSearchResultTopics] = useState([]);
   const { user } = useContext(context);
+
+  useEffect(() => {
+    if (wordsToSearch !== "") {
+      searchInTopics(wordsToSearch).then((res) => {
+        console.log(res.data);
+        if (res.success) {
+          setSearchResultTopics(res.data);
+        }
+      });
+    }
+  }, [wordsToSearch]);
 
   return (
     <>
@@ -41,19 +55,42 @@ export default function Home({
           darkMode ? "min-h-screen bg-slate-800" : "min-h-screen bg-stone-100"
         }
       >
-        <Nav darkMode={darkMode} handleDarkLight={handleDarkLight} />
+        <Nav
+          darkMode={darkMode}
+          handleDarkLight={handleDarkLight}
+          setWordsToSearch={setWordsToSearch}
+        />
         {/* {showInfo && <InfoBox info={infoBox} setShowInfo={setShowInfo} />} */}
 
-        <main className="flex flex-col items-center mt-8 max-w-6xl m-auto">
-          {user.username ? (
-            <CreateTopicBtn textInside="Crear post" dir="/crearPost" />
-          ) : (
-            <></>
-          )}
-          {data.map((topic) => (
-            <Topic topic={topic} key={topic.id} darkMode={darkMode} />
-          ))}
-        </main>
+        {wordsToSearch === "" ? (
+          <main className="flex flex-col items-center mt-8 max-w-6xl m-auto">
+            {user.username ? (
+              <CreateTopicBtn textInside="Crear post" dir="/crearPost" />
+            ) : (
+              <></>
+            )}
+            {data.map((topic) => (
+              <Topic topic={topic} key={topic.id} darkMode={darkMode} />
+            ))}
+          </main>
+        ) : (
+          <main className="flex flex-col items-center mt-8 max-w-6xl m-auto">
+            {searchResultTopics.length === 0 && (
+              <span
+                className={
+                  darkMode
+                    ? "text-xl text-slate-50 font-bold mt-12"
+                    : "text-xl text-stone-800 font-bold mt-12"
+                }
+              >
+                No hay resultados para la busqueda:{" "}
+                <span className={darkMode ? "text-rose-500" : "text-rose-600"}>
+                  {wordsToSearch}
+                </span>
+              </span>
+            )}
+          </main>
+        )}
       </div>
     </>
   );
