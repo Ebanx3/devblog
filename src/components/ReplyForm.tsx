@@ -20,7 +20,6 @@ const ReplyForm = ({
 
   const handleConfirm = async () => {
     const response = await addReplyToTopic(topicId, content);
-    console.log(response);
     if (response.success) {
       addReply({
         username: user.username,

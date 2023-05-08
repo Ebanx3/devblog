@@ -30,7 +30,7 @@ const Login = ({ darkMode }: { darkMode: boolean }) => {
     }
 
     const response = await login(username, password);
-    console.log(response);
+
     if (response.success) {
       setUser((response.data as User) || {});
       router.push("/");

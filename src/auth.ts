@@ -28,7 +28,6 @@ export const checkAuth = (token: string) => {
         return { username: tokenData.username, userId: tokenData.userId, rol: tokenData.rol }
     }
     catch (error) {
-        console.log(error);
         return {}
     }
 

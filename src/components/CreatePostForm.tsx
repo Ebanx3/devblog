@@ -42,10 +42,8 @@ const CreatePostForm = ({
 
   const handleConfirm = async () => {
     const response = await createPost(title, content);
-    console.log(response);
     if (response.success) {
       const titleWithSlash = await title.replaceAll(" ", "_");
-      console.log(titleWithSlash);
       router.push(`/post/${titleWithSlash}`);
     }
   };

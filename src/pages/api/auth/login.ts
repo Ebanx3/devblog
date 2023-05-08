@@ -24,7 +24,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
         return res.status(200).setHeader('Set-Cookie', token).json({ success: true, message: 'ok', data: { username: user.username, userId: user._id, rol: user.rol, urlAvatar: user.urlAvatar, favs: user.favs } })
     }
     catch (error) {
-        console.log(error)
         return res.status(500).json({ success: false, message: 'Error trying to login', data: error as object })
     }
 

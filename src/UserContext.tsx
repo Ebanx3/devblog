@@ -28,7 +28,6 @@ export const UserContext = ({ children }: PropsWithChildren) => {
     typeof window !== "undefined"
       ? JSON.parse(localStorage.getItem("userData") ?? "{}")
       : {};
-  console.log();
   const [user, setUser] = useState(userLS);
   const [siteReady, setSiteReady] = useState(false);
   useEffect(() => {

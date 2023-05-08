@@ -50,7 +50,6 @@ const Topic = ({
 
   const { user, setUser } = useContext(context);
   const itsInFavs = (): boolean => {
-    console.log(user);
     if (!user.favs) return false;
     const index = user.favs.findIndex(
       (elem: fav) => elem.title === topic.title
@@ -76,7 +75,6 @@ const Topic = ({
 
   const handleDislike = async () => {
     const response = await addOrRemoveDislike(topic.id);
-    console.log(response);
     if (response.success) {
       setDislikes(response.data);
     }
@@ -89,7 +87,6 @@ const Topic = ({
       topic.createdAt,
       topic.id
     );
-    console.log(response);
     if (response.success) {
       const newUser = { ...user };
       if (postInFav) {
@@ -301,7 +298,6 @@ export async function getServerSideProps(data: any) {
       },
     };
   } catch (e) {
-    console.log(e);
     return {
       props: {
         connected,

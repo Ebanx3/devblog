@@ -166,7 +166,6 @@ const addOrRemoveLike = async (req: NextApiRequest, res: NextApiResponse<respons
         })
     }
     catch (error) {
-        console.log(error)
         return res.status(500).json({
             success: false,
             message: 'Error trying to update the topic',
@@ -212,7 +211,6 @@ const addOrRemoveDislike = async (req: NextApiRequest, res: NextApiResponse<resp
         })
     }
     catch (error) {
-        console.log(error)
         return res.status(500).json({
             success: false,
             message: 'Error trying to update the topic',
@@ -235,14 +233,9 @@ const searchInTopics = async (req: NextApiRequest, res: NextApiResponse<response
         const { query } = req.query;
         const queryToLook: string = query!.toString()
 
-
         const res2 = await PostModel.find({ $text: { $search: queryToLook } });
 
-
         const result = await Promise.all(res2.map(async (res: any) => { return await TopicModel.findOne({ postId: res._id }) }));
-
-        // const r = await createR(res2)
-        // // console.log(r);
 
         return res.status(200).json({
             success: true,
@@ -251,7 +244,6 @@ const searchInTopics = async (req: NextApiRequest, res: NextApiResponse<response
         })
     }
     catch (error) {
-        console.log(error)
         return res.status(500).json({
             success: false,
             message: 'Error trying to get the topics',

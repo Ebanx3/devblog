@@ -39,7 +39,6 @@ const Signup = ({ darkMode }: { darkMode: boolean }) => {
     }
 
     const response = await signup(username, password, email);
-    console.log(response);
     if (response.success) {
       router.push("/");
       return;

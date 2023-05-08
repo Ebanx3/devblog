@@ -1,9 +1,7 @@
 import Head from "next/head";
-import { context } from "@/UserContext";
 import Topic from "@/components/Topic";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Nav from "@/components/Nav";
-import Connection from "@/db/connection";
 import { getMyPosts } from "./api/fetchs";
 import formatDate from "@/formatDate";
 

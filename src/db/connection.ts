@@ -18,10 +18,9 @@ class Connection {
     public async connectToDB() {
         try {
             await mongoose.connect(dbConnectionUrl);
-            console.log('Conectado a base de datos MongoAtlas')
+
         }
         catch (error) {
-            console.log(error);
         }
     }
 

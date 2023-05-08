@@ -33,7 +33,6 @@ export default function Home({
   useEffect(() => {
     if (wordsToSearch !== "") {
       searchInTopics(wordsToSearch).then((res) => {
-        console.log(res.data);
         if (res.success) {
           setSearchResultTopics(res.data);
         }
@@ -125,7 +124,6 @@ export async function getServerSideProps() {
       },
     };
   } catch (err) {
-    console.log(err);
     return {
       props: {
         connected,
