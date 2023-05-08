@@ -11,13 +11,43 @@ const Signup = ({ darkMode }: { darkMode: boolean }) => {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
 
+  const [alert, setAlert] = useState("");
+
+  const showAlert3seconds = (str: string) => {
+    setAlert(str);
+    setTimeout(() => {
+      setAlert("");
+    }, 3000);
+  };
+
   const router = useRouter();
 
   const handleConfirm = async () => {
+    if (username === "" || password === "" || email === "") {
+      showAlert3seconds("No pueden haber campos vacíos");
+      return;
+    }
+
+    if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+      showAlert3seconds("Email no válido");
+      return;
+    }
+
+    if (password.length < 8) {
+      showAlert3seconds("El password debe tener al menos 8 carácteres");
+      return;
+    }
+
     const response = await signup(username, password, email);
     console.log(response);
     if (response.success) {
       router.push("/");
+      return;
+    }
+
+    if (response.message === "username or email already in use") {
+      showAlert3seconds("Nombre o email ya en uso");
+      return;
     }
   };
 
@@ -35,7 +65,7 @@ const Signup = ({ darkMode }: { darkMode: boolean }) => {
         className={
           darkMode
             ? "flex justify-center items-center bg-slate-800 h-screen"
-            : "flex justify-center items-center bg-sky-100 h-screen"
+            : "flex justify-center items-center bg-stone-200 h-screen"
         }
       >
         <Link href="/" className="absolute top-4 left-4">
@@ -87,12 +117,19 @@ const Signup = ({ darkMode }: { darkMode: boolean }) => {
             onChange={(e) => setPassword(e.target.value)}
             className={
               darkMode
-                ? "my-4 bg-slate-700 focus:outline-none text-center p-1"
-                : "my-4 focus:outline-none text-center p-1 border-2 bg-stone-100"
+                ? "mt-4 bg-slate-700 focus:outline-none text-center p-1"
+                : "mt-4 focus:outline-none text-center p-1 border-2 bg-stone-100"
             }
           />
+          <div className="h-14 w-60 my-2 flex justify-center items-center">
+            {alert !== "" && (
+              <span className="bg-red-500 text-white px-2 rounded-md">
+                {alert}
+              </span>
+            )}
+          </div>
           <button
-            className="bg-rose-500 mt-2 p-2 text-white font-bold hover:bg-rose-400"
+            className="bg-rose-500 p-2 text-white font-bold hover:bg-rose-400"
             onClick={(e) => {
               e.preventDefault();
               handleConfirm();

@@ -131,7 +131,7 @@ const Topic = ({
       </Head>
       <div
         className={
-          darkMode ? "min-h-screen bg-slate-800" : "min-h-screen bg-sky-100"
+          darkMode ? "min-h-screen bg-slate-800" : "min-h-screen bg-stone-200"
         }
       >
         <Nav

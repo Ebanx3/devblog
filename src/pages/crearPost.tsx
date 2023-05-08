@@ -18,7 +18,7 @@ const CrearPost = ({ darkMode }: { darkMode: boolean }) => {
       </Head>
       <div
         className={
-          darkMode ? "min-h-screen bg-slate-800" : "min-h-screen bg-sky-100"
+          darkMode ? "min-h-screen bg-slate-800" : "min-h-screen bg-stone-200"
         }
       >
         <Link href="/" className="absolute top-4 left-4">

@@ -38,7 +38,7 @@ const Nav = ({
           className={
             darkMode
               ? "md:ml-12 ml-2 text-slate-100 text-2xl font-bold"
-              : "md:ml-12 ml-2 text-stone-700 text-2xl font-bold"
+              : "md:ml-12 ml-2 text-stone-600 text-2xl font-bold"
           }
         >
           nosApuntes
