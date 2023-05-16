@@ -140,8 +140,8 @@ const Topic = ({
           <div
             className={
               darkMode
-                ? "bg-slate-900 text-slate-100 mt-4 sm:p-6 p-1"
-                : "bg-white mt-4 sm:p-6 text-stone-800 p-1"
+                ? "bg-slate-900 text-slate-100 mt-8 sm:p-4 p-1"
+                : "bg-white mt-8 sm:p-4 text-stone-800 p-1"
             }
           >
             <div className="flex items-center justify-between">
